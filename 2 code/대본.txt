@@ -66,4 +66,235 @@ https://tae-hui.tistory.com/entry/Python-selenium-%EC%97%94%ED%84%B0%ED%82%A4-%E
 
 검색 완료
 
-git subtree add --prefix=Study-Day-6-done https://github.com/HyungJinHan/Study-Day-6-done.git main
+3번 사진
+
+마찬가지로 작은 이미지 클릭을 위해 (python selenium enter) 검색
+
+https://tbbrother.tistory.com/entry/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%85%80%EB%A6%AC%EB%8B%88%EC%97%84Selenium%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%9B%B9-%ED%81%B4%EB%A6%AD%ED%95%98%EA%B8%B0
+
+위의 코드를 입력 후 실행을 하면
+
+4번 사진
+
+첫번째 작은 이미지 클릭이 된 걸 볼 수 잇음
+
+마찬가지로 작은 이미지 클릭 후 큰 이미지를 다운받으려면
+
+큰 이미지의 class 이름과 이미지 다운을 위한 주소 필요
+
+이것 또한 검색을 통해 (python selenium img src)
+
+https://stackoverflow.com/questions/45215992/how-to-get-img-src-in-string-in-selenium-using-python
+
+코드 알아내기
+
+위의 코드를 적용 후 실행하면
+
+Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed
+
+이런 코드가 등장하며 실패했다고 뜸
+
+긴 주소를 불러오기 위해 어느정도의 시간을 두고 코드를 종료시켜야함
+
+이런 시간을 지연시키는 코드를 넣어주기 위해
+
+import time을 입력
+
+time.sleep(3)
+
+위의 코드로 큰 이미지의 주소를 불러오기 전에 3초 정도의
+
+로딩 시간을 갖은 후 이미지 주소 출력을 하면
+
+5번 사진
+
+이렇게 이미지의 url이 나오게 된다.
+
+이렇게 나온 url을 가지고 이미지 다운을 받아야 하는데...
+
+이 또한 구글링으로! (python download image by url)
+
+https://stackoverflow.com/questions/3042757/downloading-a-picture-via-urllib-and-python
+
+에서의 코드를 입력
+
+위에서 얻은 url을 출력하는 print문을 지우고 imgUrl이라는 변수에 담는다
+
+이 변수를 
+
+urllib.request.urlretrieve(imgUrl, "test.jpg")
+
+이렇게 담으면??
+
+urllib.error.HTTPError: HTTP Error 403: Forbidden
+
+에러가 뜬다...
+
+필자가 이해한 바로는 보안으로 인해 접근을 막은 듯하다
+
+또 다시 구글링의 시간...
+
+조금 오래걸렸지만 코드의 작성법을 알아냈다.
+
+https://stackoverflow.com/questions/34692009/download-image-from-url-using-python-urllib-but-receiving-http-error-403-forbid
+
+밑으로 내리다가 찾은 해결법이다.
+
+우리가 사람으로써 크롤링을 하는 것이 아닌 브라우저인 것처럼 속이는 header를 추가하면 된다고 한다.
+
+코드
+
+이렇게 
+
+추가한 코드를 실행하게 되면?
+
+다운로드 성공...
+
+다음으로 한장만 받은 것이 아닌 여러장을 받기 위해 반복문으로 코드를 수정할 차례
+
+이미지를 처음에 클릭하는 부분부터 다운로드 받는 부분까지 반복문을 돌리자!
+
+코드
+
+for문 사용을 위해 작은 이미지를 클릭하는 부분을 images라는 변수에 담고
+
+for image in images
+
+작은 이미지들을 찾고 각각의 이미지를 하나씩 뽑아서
+
+클릭, 3초 쉬고, url을 받아 다운받고를 반복하게 되면 키워드에 해당하는
+
+이미지를 모두 다운받을 수 있게 된다.
+
+.jpg 부분의 파일명도
+
+코드
+
+위의 코드처럼 수정 후, 실행하면 다운로드가 받아질 것이다.
+
+하지만...
+
+사진 6번
+
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".n3VNCb.KAlRDb"}
+(Session info: chrome=102.0.5005.115)
+
+이러한 코드가 떠버린다....
+
+에러 문구를 해석해 본 결과, no such element라는 문구가 보인다.
+
+이건 class가 다른 스파이가 심어져 있을 수 있다라는 느낌적인 느낌
+
+에러 문구에서 메세지 부분인 no such element: Unable to locate element 부분을
+
+try:
+
+exception:
+
+문법으로 위의 에러를 for문 내에서 예외처리를 하니...
+
+7번 사진
+
+짜잔~ 드디어 다운로드 성공
+
+> 나중에 알았지만 except: 에 pass라는 간단한 방법이 있었다...
+
+하지만 한 페이지에 올라와있는
+
+최대 50개의 이미지 파일만 받아진다.
+
+그렇다면 구글링!
+
+키워드 python selenium scroll down로 검색한 결과
+
+https://stackoverflow.com/questions/20986631/how-can-i-scroll-a-web-page-using-selenium-webdriver-in-python
+
+에서 찾은
+
+코드 
+
+위의 코드를 사용해서 스크롤을 내리고 리로드된 페이지에서 이미지를 다운받고를
+
+반복하면 될 일!
+
+이제 해석을 해보자면
+
+SCROLL_PAUSE_TIME = 0.5 (1.0) - 자동 스크롤 시간
+
+last_height = driver.execute_script("return document.body.scrollHeight")
+자바스크립트의 문법을 사용해 브라우저 높이를 구하고,
+
+while True:
+무한 반복문
+
+driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+마찬가지로 자바스트립트 문법으로 브라우저의 높이를 구한만큼 스크롤을 끝까지 내린다는 의미
+
+time.sleep(SCROLL_PAUSE_TIME)
+스크롤을 내린 후 로딩 시간동안 기다렸다가 (0.5 - 1.0)
+
+new_height = driver.execute_script("return document.body.scrollHeight")
+로딩이 끝난 후, 브라우저 높이를 다시 구하고 new_height에 담기
+
+    if new_height == last_height:
+    새로 구한 높이와 마지막으로 구한 높이가 같아지면서
+    더이상 스크롤을 내릴 구간이 없다면
+        break
+        반복문 종료
+    last_height = new_height
+    위의 사항이 아니라면 계속해서 스크롤 작업 반복
+
+추가적으로 스크롤을 내리다가 나오는
+
+결과 더보기 버튼이 나올 경우 무한 스크롤이 불가능하므로
+
+while문 안의 if문에 break를 대신해서
+
+driver.find_element_by_css_selector(".mye4qd").click()
+를 넣어 앞서 했던 것처럼 더보기 버튼을 누르도록 코드를 입력한다.
+
+더 이상 결과 더보기가 없다면 누를 버튼이 없어 오류를 뿜어내므로
+
+try:
+
+except:
+
+를 사용해서 오류가 날거 같으면 break 값으로 반복문을
+
+빠져나가도록 지정!
+
+또한 기존에 사용하는 class 명이 겹치는 불상사가 생기므로
+
+개발자 모드에서 켭치는 해당 부분의 전체 xpath를 복사한 후
+
+find_elements_by_css_selector 에서 find_element_by_xpath로
+
+수정 후, 복사한 전체 xpath를 넣어주면 확실하게 지정된 이미지만 선택이 된다.
+
+추가적으로 다운로드 받아지는 코드인
+
+다운 코드
+
+부분에 디렉토리를 지정해서
+
+저장된 이미지들을 한 디렉토리에 들어가도록 했다.
+
+뭔가 이미지 저장을 하루종일 할 것 같아서
+
+for문에 if문을 넣어 count_img가 200이 되면
+
+반복문을 빠져나가도록 break 값을 주었다.
+
+이렇게 완성된 코드는
+
+코드
+
+이렇게 나오며 마지막은 driver.close()로 코드를 닫아주면
+
+끝
+
+결과 출력은???
+
+정상적으로 저장이 된 모습을 볼 수 있다...
+
+고작 2편까지 하는데도 어렵다...
