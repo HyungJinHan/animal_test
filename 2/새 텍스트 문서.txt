@@ -1,0 +1,69 @@
+selenium 프레임워크를 사용한 막힘없는 크롤링 시도
+
+1. 파이썬 가상환경 조성 (막혀있는 사이트들의 크롤링을 위함)
+
+python venv : https://docs.python.org/ko/3/library/venv.html
+
+code : python -m venv /path/to/new/virtual/environment
+
+경로는 원하는 경로로 지정 (물론 디렉토리 명도 ex : selenium)
+
+terminal code : cd ~~\Scripts
+
+를 통해 파이썬 가상환경인 venv를 조성한 디렉토리의 Scripts로 이동
+
+terminal code : activate
+
+가상 환경 실행 완료
+
+2. selenium이라는 프레임워크 사용 (실제 브라우저를 코드를 통해 조작)
+
+설치
+
+terminal code : pip install selenium
+
+설치 후 가상 환경에서 사용할 크롬 드라이버 다운
+
+chromedriver : https://chromedriver.chromium.org/downloads
+
+크롬 브라우저의 설정 -> 도움말 -> Chrome 정보를 통해 해당하는 버전 확인 후 다운
+
+압축 해제 후, chromedriver를 가상환경을 조성한 디렉토리로 이동
+
+chromedriver와 같은 경로에 google.py 생성
+
+python selenium example 검색으로 selenium 예제코드 사용
+
+툴을 이용해 코드 넣기
+
+python selenium example : https://selenium-python.readthedocs.io/getting-started.html
+
+terminal code : pip install pylint
+
+입력으로 문법오류 검사 설치
+
+설치가 끝나면
+
+# assert "Python" in driver.title
+# elem = driver.find_element(By.NAME, "q")
+# elem.clear()
+# elem.send_keys("pycon")
+# elem.send_keys(Keys.RETURN)
+# assert "No results found." not in driver.page_source
+# driver.close()
+
+이부분 주석처리 후 파이어폭스부분을 크롬으로 수정해서 실행
+
+1번 사진 사용
+
+크롬이 자동화된 ~~~ 이라는 문구가 뜨며 사이트가 켜짐
+
+코드 해석
+
+셀레니움 엔터 검색 (python selenium enter)
+
+https://tae-hui.tistory.com/entry/Python-selenium-%EC%97%94%ED%84%B0%ED%82%A4-%EC%9E%85%EB%A0%A5
+
+검색 완료
+
+git subtree add --prefix=Study-Day-6-done https://github.com/HyungJinHan/Study-Day-6-done.git main
