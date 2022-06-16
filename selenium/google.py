@@ -13,7 +13,7 @@ elem.send_keys("robert de niro")
 
 elem.send_keys(Keys.RETURN)
 
-SCROLL_PAUSE_TIME = 1.0
+SCROLL_PAUSE_TIME = 0.5
 
 # Get scroll height
 last_height = driver.execute_script("return document.body.scrollHeight")
