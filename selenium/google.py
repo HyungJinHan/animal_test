@@ -40,7 +40,6 @@ count_img = 0
 
 for image in images:
     try:
-
         image.click()
 
         time.sleep(2)
@@ -62,7 +61,6 @@ for image in images:
 
         if count_img == 200:
             break
-
     except:
             ["no such element: Unable to locate element"]
 
