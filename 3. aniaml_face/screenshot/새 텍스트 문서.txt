@@ -50,3 +50,4 @@ https://github.com/googlecreativelab/teachablemachine-community - Teachable Mach
 
 코드 수정 완료 (start로 동물상 테스트에 쓰일 모델 불러오기 -> 이미지 추가 -> predict로 동물상 테스트 결과 보기)
 
+사용하기 편리하게 수정할 예정
