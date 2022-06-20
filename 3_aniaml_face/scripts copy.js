@@ -57,7 +57,7 @@ async function predict() {
         const prediction = await model.predict(webcam.canvas);
         // 12. 웹캠 대신 업로드된 이미지를 넣어야 함
         */
-        var image = document.getElementById("upload-image");
+        var image = document.getElementById("upload-image")
         // 18. 업로드될 이미지의 변수를 지정하고
         // 19. document.getElementById를 통해 문서에서 이미지에 해당하는 id를 가져오기
         const prediction = await model.predict(image, false);
